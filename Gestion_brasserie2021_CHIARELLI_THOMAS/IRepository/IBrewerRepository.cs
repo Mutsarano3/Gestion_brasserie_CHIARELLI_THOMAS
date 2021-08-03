@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gestion_brasserie2021_CHIARELLI_THOMAS.IRepository
 {
-	public interface IBreweryRepository : IGenericRepository<Brewery>
+	public interface IBrewerRepository : IGenericRepository<Brewer>
 	{
 	}
 }

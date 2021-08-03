@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Repository
 {
-	public class BrewerRepositorycs : GenericRepository<Brewer>, IBrewerRepository
+	public class BrewerRepository : GenericRepository<Brewer>, IBrewerRepository
 	{
-		public BrewerRepositorycs(DataContext.DataContext context) : base(context)
+		public BrewerRepository(DataContext.DataContext context) : base(context)
 		{
 
 		}
