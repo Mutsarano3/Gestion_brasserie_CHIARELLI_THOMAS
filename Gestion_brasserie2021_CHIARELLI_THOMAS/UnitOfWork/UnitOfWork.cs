@@ -21,7 +21,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.UnitOfWork
         {
             _context = context;
 			Beers = new BeerRepository(_context);
-			Brewers = new BrewerRepositorycs(_context);
+			Brewers = new BrewerRepository(_context);
 			Wholesalers = new WholesalerRepository(_context);
         }
 
