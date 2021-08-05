@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Gestion_brasserie2021_CHIARELLI_THOMAS.DTO
 {
-	public class ItemQuotesDTO
+	public class OrderDTO
 	{
 		public string BeerName { get; set; }
 
@@ -15,7 +15,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.DTO
 
 		public double TotalPrice { get; set; }
 
-		public ItemQuotesDTO(string beername,double price_unitary,int quantity)
+		public OrderDTO(string beername,double price_unitary,int quantity)
 		{
 			BeerName = beername;
 			PriceUnitary = price_unitary;

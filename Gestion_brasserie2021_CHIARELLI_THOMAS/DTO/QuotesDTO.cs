@@ -7,16 +7,16 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.DTO
 {
 	public class QuotesDTO
 	{
-		public List<ItemQuotesDTO> ItemQuotesDTOs { get; set; }
+		public List<OrderDTO> Orders { get; set; }
 
 		public double TotalQuotes { get; set; }
 
-		public QuotesDTO(List<ItemQuotesDTO> itemQuotesDTOs)
+		public QuotesDTO(List<OrderDTO> orderDTOs)
 		{
-			ItemQuotesDTOs = itemQuotesDTOs;
-			foreach (var itemq in itemQuotesDTOs)
+			Orders = orderDTOs;
+			foreach (var oDTO in orderDTOs)
 			{
-				TotalQuotes += itemq.TotalPrice;
+				TotalQuotes += oDTO.TotalPrice;
 			}
 		}
 	}
