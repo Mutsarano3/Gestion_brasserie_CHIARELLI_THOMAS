@@ -9,6 +9,12 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Models
 	{
 		public string Name { get; set; }
 
+		public Brewer(int id,string name)
+		{
+			Id = id;
+			Name = name;
+
+		}
 
 	}
 }
