@@ -56,13 +56,10 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 					return BadRequest("Le grossiste " + wholesaler.Name + " n'a  pas assez de stocke.");
 				}
 
-				var test = beerWholesalers.FindAll(x => x.IdBeer != o.IdBeer);
-
-				if (beerWholesalers.FindAll(x => x.IdBeer != o.IdBeer).ToList().Count > 0)
+				if(!beerWholesalers.Any(x => x.IdBeer != o.IdBeer) == true)
 				{
-					return BadRequest("Le grossiste ne vend pas cette bière");
+					return BadRequest("La bière : "+o.IdBeer + "N'existe pas chez ce grossiste");
 				}
-
 				var beer = _unitOfWork.Beers.GetById(o.IdBeer);
 				itemQuotes.Add(new OrderDTO(beer.Name, (decimal)beer.Price, o.BeerQuantity));
 
