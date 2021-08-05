@@ -54,8 +54,23 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 			_unitOfWork.Complete();
 
 			return NoContent();
+		}
+
+		[HttpGet]
+		[Route("getAllbeer")]
+		public ActionResult GetAllBeer()
+		{
+			List<Beer> beers = _unitOfWork.Beers.GetAll();
+
+			foreach(var b in beers)
+			{
+				var bewer = _unitOfWork.Brewers.GetById(b.IdBrewer);
+				b.Brewer = bewer;
+			}
 
 
+
+			return Ok(beers);
 		}
 
 		

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Models
 {
 	public class Beer : Entity
 	{
+		private string _extendedData;
 		public string Name { get; set; }
 
 		public double Alchool { get; set; }
@@ -18,5 +20,8 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Models
 
 		[ForeignKey("IdBrewer")]
 		public virtual Brewer Brewer { get; set; }
+
+		[NotMapped]
+		public List<Wholesaler> Wholesalers { get; set; }
 	}
 }
