@@ -23,6 +23,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.DataContext
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			builder.Entity<Brewer>().HasData(new Brewer(1, "Test"));
+			builder.Entity<Wholesaler>().HasData(new Wholesaler(1, "TestGrossiste"));
 		}
 
 

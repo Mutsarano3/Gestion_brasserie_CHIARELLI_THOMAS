@@ -1,5 +1,6 @@
 using Gestion_brasserie2021_CHIARELLI_THOMAS.IRepository;
 using Gestion_brasserie2021_CHIARELLI_THOMAS.Repository;
+using Gestion_brasserie2021_CHIARELLI_THOMAS.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS
 			services.AddTransient<IBeerRepository, BeerRepository>();
 			services.AddTransient<IBrewerRepository, BrewerRepository>();
 			services.AddTransient<IWholesalerRepository, WholesalerRepository>();
+			services.AddTransient<IUnitOfWork, UnitOfWork.UnitOfWork>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
