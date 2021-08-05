@@ -24,7 +24,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 		[Route("newbeer")]
 		public ActionResult NewBeer(Beer beer)
 		{
-			if(beer == null)
+			if (beer == null)
 			{
 				return BadRequest("No beer was sent");
 			}
@@ -36,7 +36,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 
 			_unitOfWork.Beers.SaveOrUpdate(beer);
 			_unitOfWork.Complete();
-			return Created("",beer);
+			return Created("", beer);
 		}
 
 		[HttpDelete]
@@ -45,7 +45,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 		{
 			Beer beer = _unitOfWork.Beers.GetById(id);
 
-			if(beer == null)
+			if (beer == null)
 			{
 				return NotFound("No beer was found");
 			}
@@ -62,7 +62,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 		{
 			List<Beer> beers = _unitOfWork.Beers.GetAll();
 
-			foreach(var b in beers)
+			foreach (var b in beers)
 			{
 				var bewer = _unitOfWork.Brewers.GetById(b.IdBrewer);
 				b.Brewer = bewer;
@@ -75,14 +75,14 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 		[Route("addNewbeeratwholesaler")]
 		public ActionResult AddBeerWholesaler(BeerWholesaler beerWholesaler)
 		{
-			if(beerWholesaler == null)
+			if (beerWholesaler == null)
 			{
 				return BadRequest("No data has been sent");
 			}
 
 			var beer = _unitOfWork.Beers.GetById(beerWholesaler.IdBeer);
 			var wholesaler = _unitOfWork.Wholesalers.GetById(beerWholesaler.IdWholesaler);
-			if(beer == null || wholesaler == null)
+			if (beer == null || wholesaler == null)
 			{
 				string message = "";
 
@@ -95,11 +95,11 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 				{
 					message = "No beer was found";
 				}
-				else if(wholesaler == null)
+				else if (wholesaler == null)
 				{
 					message = "No wholesalers were found";
 				}
-				
+
 				return NotFound(message);
 			}
 
@@ -109,6 +109,49 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 			return Created("", beerWholesaler);
 		}
 
-		
+		[HttpPut]
+		[Route("updateQuantityBeer")]
+		public ActionResult UpdateQuantityBeer(BeerWholesaler beerWholesaler)
+		{
+			if (beerWholesaler == null)
+			{
+				return BadRequest("No data has been sent");
+			}
+
+			var beer = _unitOfWork.Beers.GetById(beerWholesaler.IdBeer);
+			var wholesaler = _unitOfWork.Wholesalers.GetById(beerWholesaler.IdWholesaler);
+			if (beer == null || wholesaler == null)
+			{
+				string message = "";
+
+				if (wholesaler == null && beer == null)
+				{
+					message = "The beer and the wholesaler was not found";
+				}
+
+				else if (beer == null)
+				{
+					message = "No beer was found";
+				}
+				else if (wholesaler == null)
+				{
+					message = "No wholesalers were found";
+				}
+
+				return NotFound(message);
+			}
+
+			var oldbeerwholesaler = _unitOfWork.BeerWholesalers.GetBeerWholesalerByIdBeerAndIdWholesaler(beer.Id, wholesaler.Id);
+			oldbeerwholesaler.BeerQuantity = beerWholesaler.BeerQuantity;
+			_unitOfWork.BeerWholesalers.SaveOrUpdate(oldbeerwholesaler);
+			_unitOfWork.Complete();
+
+			return NoContent();
+
+
+
+
+
+		}
 	}
 }

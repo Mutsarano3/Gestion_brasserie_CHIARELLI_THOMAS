@@ -13,5 +13,12 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Repository
 		{
 
 		}
+
+		public BeerWholesaler GetBeerWholesalerByIdBeerAndIdWholesaler(int idbeer,int idwholesaler)
+		{
+			var beerwholesaler = _context.BeerWholesalers.ToList().Where(x => x.IdBeer == idbeer && x.IdWholesaler == idwholesaler).SingleOrDefault();
+
+			return beerwholesaler;
+		}
 	}
 }
