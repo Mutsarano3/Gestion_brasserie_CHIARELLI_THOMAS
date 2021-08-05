@@ -35,6 +35,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS
 			services.AddTransient<IBeerRepository, BeerRepository>();
 			services.AddTransient<IBrewerRepository, BrewerRepository>();
 			services.AddTransient<IWholesalerRepository, WholesalerRepository>();
+			services.AddTransient<IBeerWholesalerRepository, BeerWholesalerRepository>();
 			services.AddTransient<IUnitOfWork, UnitOfWork.UnitOfWork>();
 		}
 
