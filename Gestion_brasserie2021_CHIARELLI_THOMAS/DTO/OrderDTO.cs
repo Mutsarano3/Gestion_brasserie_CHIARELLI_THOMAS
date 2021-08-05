@@ -9,13 +9,13 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.DTO
 	{
 		public string BeerName { get; set; }
 
-		public double PriceUnitary { get; set; }
+		public decimal PriceUnitary { get; set; }
 
 		public int Quantity { get; set; }
 
-		public double TotalPrice { get; set; }
+		public decimal TotalPrice { get; set; }
 
-		public OrderDTO(string beername,double price_unitary,int quantity)
+		public OrderDTO(string beername, decimal price_unitary,int quantity)
 		{
 			BeerName = beername;
 			PriceUnitary = price_unitary;

@@ -8,5 +8,6 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.IRepository
 {
 	public interface IWholesalerRepository : IGenericRepository<Wholesaler>
 	{
+		public List<Wholesaler> GetWholesalerByIdBeer(int id);
 	}
 }

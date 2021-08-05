@@ -61,12 +61,15 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 		public ActionResult GetAllBeer()
 		{
 			List<Beer> beers = _unitOfWork.Beers.GetAll();
-
+			 
 			foreach (var b in beers)
 			{
 				var bewer = _unitOfWork.Brewers.GetById(b.IdBrewer);
 				b.Brewer = bewer;
+				b.Wholesalers = _unitOfWork.Wholesalers.GetWholesalerByIdBeer(b.Id);
+
 			}
+
 
 			return Ok(beers);
 		}
@@ -101,6 +104,11 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 				}
 
 				return NotFound(message);
+			}
+
+			if(_unitOfWork.BeerWholesalers.GetAll().Where(x => x.IdBeer == beerWholesaler.IdBeer && x.IdWholesaler == beerWholesaler.IdWholesaler).ToList().Count > 0)
+			{
+				return BadRequest("The beer that is to be added to the sale already exists for the same wholesaler");
 			}
 
 			_unitOfWork.BeerWholesalers.SaveOrUpdate(beerWholesaler);

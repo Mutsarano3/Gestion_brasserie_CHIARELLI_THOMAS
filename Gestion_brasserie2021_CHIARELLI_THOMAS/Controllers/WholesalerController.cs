@@ -27,7 +27,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 		[Route("askquotes/{id}")]
 		public ActionResult AskQuotes(int id,List<BeerWholesaler> order)
 		{
-			List<ItemQuotesDTO> itemQuotes = new List<ItemQuotesDTO>();
+			List<OrderDTO> itemQuotes = new List<OrderDTO>();
 			if(order.Count == 0)
 			{
 				return BadRequest("La commande ne peut-être vide");
@@ -56,14 +56,15 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 					return BadRequest("Le grossiste " + wholesaler.Name + " n'a  pas assez de stocke.");
 				}
 
-				if(beerWholesalers.Where(bh => bh.IdBeer != o.IdBeer).ToList().Count > 0)
+				var test = beerWholesalers.FindAll(x => x.IdBeer != o.IdBeer);
+
+				if (beerWholesalers.FindAll(x => x.IdBeer != o.IdBeer).ToList().Count > 0)
 				{
 					return BadRequest("Le grossiste ne vend pas cette bière");
 				}
 
 				var beer = _unitOfWork.Beers.GetById(o.IdBeer);
-
-				itemQuotes.Add(new ItemQuotesDTO(beer.Name, beer.Price, o.BeerQuantity));
+				itemQuotes.Add(new OrderDTO(beer.Name, (decimal)beer.Price, o.BeerQuantity));
 
 			}
 
