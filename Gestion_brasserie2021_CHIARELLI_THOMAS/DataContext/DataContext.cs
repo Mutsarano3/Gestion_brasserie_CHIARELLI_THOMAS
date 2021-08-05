@@ -15,6 +15,8 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.DataContext
 
 		public DbSet<Wholesaler> Wholesalers { get; set; }
 
+		public DbSet<BeerWholesaler> BeerWholesalers { get; set; }
+
 		public DataContext(DbContextOptions<DataContext> options) : base(options)
 		{
 
@@ -24,6 +26,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.DataContext
 		{
 			builder.Entity<Brewer>().HasData(new Brewer(1, "Test"));
 			builder.Entity<Wholesaler>().HasData(new Wholesaler(1, "TestGrossiste"));
+			
 		}
 
 

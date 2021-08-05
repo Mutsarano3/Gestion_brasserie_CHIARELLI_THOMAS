@@ -68,8 +68,6 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 				b.Brewer = bewer;
 			}
 
-
-
 			return Ok(beers);
 		}
 
