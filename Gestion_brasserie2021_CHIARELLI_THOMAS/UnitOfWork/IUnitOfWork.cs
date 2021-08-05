@@ -11,6 +11,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.UnitOfWork
         IBeerRepository Beers { get; }
         IBrewerRepository Brewers { get; }
         IWholesalerRepository Wholesalers { get; }
+        IBeerWholesalerRepository BeerWholesalers { get; }
         int Complete();
     }
 }

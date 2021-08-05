@@ -14,6 +14,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.UnitOfWork
 		public IBrewerRepository Brewers { get; private set; }
 
 		public IWholesalerRepository Wholesalers { get; private set; }
+		public IBeerWholesalerRepository BeerWholesalers { get; private set; }
 
 		private readonly DataContext.DataContext _context;
 
@@ -23,6 +24,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.UnitOfWork
 			Beers = new BeerRepository(_context);
 			Brewers = new BrewerRepository(_context);
 			Wholesalers = new WholesalerRepository(_context);
+			BeerWholesalers = new BeerWholesalerRepository(_context);
         }
 
         public int Complete()

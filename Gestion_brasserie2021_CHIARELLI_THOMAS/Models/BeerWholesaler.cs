@@ -15,7 +15,7 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Models
 		public int BeerQuantity { get; set; }
 
 		[ForeignKey("IdBeer")]
-		public virtual Brewer Brewer { get; set; }
+		public virtual Beer Brewer { get; set; }
 
 		[ForeignKey("IdWholesaler")]
 		public virtual Wholesaler Wholesaler { get; set; }

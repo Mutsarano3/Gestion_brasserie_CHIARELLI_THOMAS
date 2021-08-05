@@ -71,6 +71,44 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Controllers
 			return Ok(beers);
 		}
 
+		[HttpPost]
+		[Route("addNewbeeratwholesaler")]
+		public ActionResult AddBeerWholesaler(BeerWholesaler beerWholesaler)
+		{
+			if(beerWholesaler == null)
+			{
+				return BadRequest("No data has been sent");
+			}
+
+			var beer = _unitOfWork.Beers.GetById(beerWholesaler.IdBeer);
+			var wholesaler = _unitOfWork.Wholesalers.GetById(beerWholesaler.IdWholesaler);
+			if(beer == null || wholesaler == null)
+			{
+				string message = "";
+
+				if (wholesaler == null && beer == null)
+				{
+					message = "The beer and the wholesaler was not found";
+				}
+
+				else if (beer == null)
+				{
+					message = "No beer was found";
+				}
+				else if(wholesaler == null)
+				{
+					message = "No wholesalers were found";
+				}
+				
+				return NotFound(message);
+			}
+
+			_unitOfWork.BeerWholesalers.SaveOrUpdate(beerWholesaler);
+			_unitOfWork.Complete();
+
+			return Created("", beerWholesaler);
+		}
+
 		
 	}
 }
