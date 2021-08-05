@@ -7,6 +7,8 @@ namespace Gestion_brasserie2021_CHIARELLI_THOMAS.Models
 {
 	public class Brewer : Entity
 	{
+		public string Name { get; set; }
+
 
 	}
 }
