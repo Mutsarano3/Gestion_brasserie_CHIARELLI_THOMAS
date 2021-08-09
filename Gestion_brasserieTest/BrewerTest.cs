@@ -43,7 +43,6 @@ namespace Gestion_brasserieTest
 			mockContext.Setup(m => m.Beers.SaveOrUpdate(beer)).Returns(beer);
 			var controller = new BrewerController(mockContext.Object);
 			*/
-			Assert.AreEqual("ok", "ok");
 			/*
 
 			Beer beer = new Beer();
